@@ -1,8 +1,36 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
-const fs = require(fs);
+const generateMarkdown = require("./utils/generateMarkdown");
+const fs = require("fs");
+const utils = require("utils");
+
+
+// prompt user for start of readme generator
+//const promptUser = readmeData => {
+    //console.log(
+      //  "Welcome to the ReadME Generator! Let's begin with a few questions"
+    //);
+//}
+//if (!readmeData) {
+    //readmeData = [];
+//}
 // TODO: Create an array of questions for user input
-const questions = [];
+const promptUser = () => {
+ inquirer.prompt([{
+     type: "input",
+     name: "Title",
+     message: "What is the title of your project? (Required)",
+     validate: titleInput => {
+         if (titleInput) {
+             return true;
+         } else{
+             console.log("A title name is required, please eneter projevct name!");
+             return false;
+         }
+         
+        }
+ }])
+}
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
