@@ -16,20 +16,25 @@ const utils = require("utils");
 //}
 // TODO: Create an array of questions for user input
 const promptUser = () => {
- inquirer.prompt([{
+
+ return inquirer.prompt([{
      type: "input",
      name: "Title",
      message: "What is the title of your project? (Required)",
      validate: titleInput => {
-         if (titleInput) {
+         if (!titleInput) {
              return true;
          } else{
-             console.log("A title name is required, please eneter projevct name!");
+             console.log("A title name is required, please enter project name!");
              return false;
          }
-         
-        }
- }])
+         return true;
+        },
+
+        type: "input",
+        name: "description"
+
+    }])
 }
 
 // TODO: Create a function to write README file
