@@ -3,6 +3,7 @@ const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
 const fs = require("fs");
 const utils = require("utils");
+const emailVaildator = require("email-validator");
 
 
 // prompt user for start of readme generator
@@ -20,19 +21,37 @@ const promptUser = () => {
  return inquirer.prompt([{
      type: "input",
      name: "Title",
-     message: "What is the title of your project? (Required)",
+     message: "What is the title of your project? (required)",
      validate: titleInput => {
          if (!titleInput) {
              return true;
          } else{
              console.log("A title name is required, please enter project name!");
              return false;
+         } else{
+             console.log("A title name is required, please enter project name!");
+             return true;
          }
-         return true;
+
+         
+        },
+        type: "input",
+        name: "desc",
+        message: "Add a description for the application (required)",
+        validate: descInput =>{
+            if (!descInput) {
+                console.log("You need to add a description for your project!");
+                return false;
+            }
+            return true;
+
         },
 
+        
         type: "input",
-        name: "description"
+        name: "use",
+        message: ("Provide instructions on how to use the app"),
+        
 
     }])
 }
