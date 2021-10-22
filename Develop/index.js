@@ -1,6 +1,6 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer')
-// const generateMarkdown = require("./utils/generateMarkdown");
+const generateMarkdown = require("./utils/generateMarkdown");
 const fs = require("fs");
 // const emailVaildator = require("email-validator");
 
@@ -17,7 +17,7 @@ const fs = require("fs");
 // TODO: Create an array of questions for user input
 // const promptUser = () => {
 
-function runPromps() {
+//function runPromps() {
 
 inquirer
     .prompt([{
@@ -29,7 +29,7 @@ inquirer
         type: "input",
         name: "desc",
         message: "Add a description for the application (required)",
-        
+
     },
     {
         type: "input",
@@ -50,28 +50,38 @@ inquirer
         type: "list",
         name: "license",
         message: "Select which license's to be used.",
+        choices: ["MIT", "Mozilla Public", "Apache", "GNU AGPLv3", "Unlicensed"]
     },
     {
         type: "input",
         name: "email",
         message: "What is your email? (required)",
+        // validate: userEmail => {
+        // if (emailValidator.validate(userEmail)) {
+        // return true;
+        // } else{
+        // console.log("You need to enter a valid email adress.");
+        // }
+        // }
     },
-    {
+    ])
 
-    }
-
-    ]).then((data) => {
+    .then((data) => {
+        const fileName = `${data.title}.md`;
+        fs.writeFile(fileName, generateMarkdown(data), (err) => err ? console.log(err) : console.log('Success! Your README file has been created.')
+        )
+        console.log(fileName)
         console.log(data)
     })
-}
 
-runPromps()
 
-// TODO: Create a function to write README file
+// runPromps()
+
+//TODO: Create a function to write README file
 //function writeToFile(fileName, data) { }
 
-// TODO: Create a function to initialize app
+//TODO: Create a function to initialize app
 //function init() { }
 
-// Function call to initialize app
-//init();
+//Function call to initialize app
+//init()
