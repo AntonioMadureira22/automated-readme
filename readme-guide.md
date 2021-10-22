@@ -21,6 +21,7 @@ Once opened make sure you're in the develop directory. After that it is smooth s
 
 ## Testing
 A video to show how it is being used.
+https://user-images.githubusercontent.com/86333093/138385218-bcf92ef5-6aa0-48f7-bdbc-f81bf89f8204.mp4
 
 
 ## License
